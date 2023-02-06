@@ -96,12 +96,11 @@ export default class DemoLWC extends LightningElement {
         let changedRow =this.template.querySelector('lightning-datatable').draftValues;
         changedRow.forEach(row => {
             if(selectedRows.includes(row.CredId)) {
-            console.log(JSON.stringify(row));
                 credLines.push(row);
             }
         });
-        let a = this.invoice.Total_Amount__c - this.totalCredit;
-        if(a<0) {
+        let total = this.invoice.Total_Amount__c - this.totalCredit;
+        if(total<0) {
             const evt = new ShowToastEvent({
             title: '',
             message: 'The total credit exceeded the invoice amount.',
@@ -110,9 +109,8 @@ export default class DemoLWC extends LightningElement {
             this.dispatchEvent(evt);
             return false;
         }
-        console.log(JSON.stringify(credLines));
         saveCreditLines({wrp: credLines, InvoiceId : 'a002w00000XoSPOAA3'})
-            .then(data => {
+            .then(() => {
                 const evt = new ShowToastEvent({
                     title: '',
                     message: 'Credit Notes have been allocated successfully to the invoice',
