@@ -1,4 +1,7 @@
 public with sharing class InvoiceService {
+    /*
+    Getting the credit Notes assigned to a customer
+    */
     @AuraEnabled(cacheable=true)
     public static list<Credit_Note__c> getCreditNotes(Id invId) {
         list<Invoice__c> inv = [SELECT id,Customer__c FROM Invoice__c WHERE id=:invId];
@@ -9,7 +12,9 @@ public with sharing class InvoiceService {
             return null;
         }
     }
-
+    /*
+    Getting the invoice details for calculations
+    */
     @AuraEnabled(cacheable=true)
     public static Invoice__c getInvoice(Id invId) {
         list<Invoice__c> inv = [SELECT id,Name,CreatedDate,Credit_Note_Credits__c,Total_Amount__c,Amount_Due__c FROM Invoice__c WHERE Id = :invId];
@@ -19,6 +24,9 @@ public with sharing class InvoiceService {
             return null;
         }
     }
+    /*
+    Saving the credit note assignments and updates invoice and credit notes
+    */
     @AuraEnabled
     public static void saveCreditLines(list<invoiceWrapper> wrp, string InvoiceId) {
         List<id> credIds = new list<id>();
@@ -67,12 +75,11 @@ public with sharing class InvoiceService {
             system.debug(e);
         }
     }
-
+    /*
+    Wrapper to get the values for the JS controller
+    */
     public class invoiceWrapper {
         @AuraEnabled public string CredId{get;set;}
-        @AuraEnabled public Date CreatedDate{get;set;}
-        @AuraEnabled public Decimal Amount_Available{get;set;}
         @AuraEnabled public Decimal Amount_To_Credit{get;set;}
-        @AuraEnabled public string Name{get;set;}
     }
 }

@@ -11,7 +11,7 @@ export default class DemoLWC extends LightningElement {
     @track draftValues;
     invoice;
     @track selectedRows = [];
-    @api recordId='a002w00000XoSPOAA3';
+    @api recordId='a002w00000XoSPOAA3';//Hardcoded for demo purpose. Can be used in app builder to pass the record id
 
     columns = [
         { label: 'Credit Note', fieldName: 'Name' },
@@ -19,11 +19,8 @@ export default class DemoLWC extends LightningElement {
         { label: 'Amount Available', fieldName: 'Amount_Available', type: 'currency' },
         { label: 'Amount to Credit', fieldName: 'Amount_To_Credit', type: 'currency',editable: true}
     ];
-    creditNoteWiredValue;
     @wire(getCreditNotes, {invId:'$recordId'})
-    getOpenCreditNotes(value) {
-        this.creditNoteWiredValue = value;
-        const { data, error } = value;        
+    getOpenCreditNotes({ data, error }) {  
         if (data) {
             let creditNotesData=[];
             data.forEach(elm => {
@@ -66,11 +63,8 @@ export default class DemoLWC extends LightningElement {
         
         this.draftValues = changedRow;
     }
-    invoiceWiredValue;
     @wire(getInvoice, {invId:'$recordId'})
-    getInvoiceDetails(value) {
-        this.invoiceWiredValue=value;
-        const { data, error } = value;        
+    getInvoiceDetails({ data, error }) {  
         if (data) {
             this.invoice = data;
         } else if (error) {
