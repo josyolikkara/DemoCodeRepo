@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amount_Allocated__c</fullName>
+    <externalId>false</externalId>
+    <label>Amount Allocated</label>
+    <summarizedField>Credit_Note_Assignment__c.Amount_Allocated__c</summarizedField>
+    <summaryForeignKey>Credit_Note_Assignment__c.Credit_Note__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

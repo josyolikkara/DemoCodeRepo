@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CreditNote_cannot_exceed_Invoice</fullName>
+    <active>true</active>
+    <errorConditionFormula>Amount_Available__c &lt;0</errorConditionFormula>
+    <errorMessage>A credit note cannot be allocated with more than the available amount</errorMessage>
+</ValidationRule>
