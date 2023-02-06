@@ -1,0 +1,32 @@
+.mainDiv{
+	margin: 0 auto;
+	max-width: 90%;
+	
+}
+.buttonSection{
+	text-align: center;
+}
+.summary{
+	text-align: right;
+	padding: 10px;
+}
+.slds-button{
+	margin-bottom: 10px;
+}
+.wrapperDiv {
+	width: 100%;
+	background-color: white;
+}
+.heading {
+	font-size: 20px;
+	margin-top: 10px;
+}
+.subheading {
+	font-size: 15px;
+	margin-top: 10px;
+}
+:host {
+	--lwc-tableColorBackgroundHeader:#D9BBB9;
+	--slds-c-button-brand-color-background:#781511;
+	--lwc-tableColorBackgroundHeaderHover:#D9BBB9;
+}

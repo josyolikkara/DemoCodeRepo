@@ -1,0 +1,33 @@
+<template>
+    <div class="wrapperDiv">
+        <div if:true={creditNotesData} class="mainDiv">
+            <div if:true={invoice}>
+                <div class="heading">
+                    Allocate outstanding credit to {invoice.Name}
+                </div>
+                <div class="subHeading">
+                    Select the Credit Note(s) to be applied to the invoice and specify the Amount to Credit
+                </div>
+            </div>
+            <lightning-datatable
+                    key-field="CredId"
+                    data={creditNotesData}
+                    show-row-number-column
+                    draft-values={draftValues}
+                    row-number-offset={rowOffset}
+                    selected-rows={selectedRows}
+                    suppress-bottom-bar
+                    oncellchange={validateRows}
+                    columns={columns}>
+            </lightning-datatable>
+            <div if:true={invoice} class="summary">
+                Amount Due on Invoice: {invoice.Amount_Due__c} <br/>
+                Total Amount to Credit: {totalCredit} <br/>
+                Balance Due on Invoice: {remainAmount}
+            </div>
+            <div class="buttonSection">
+                <button class="slds-button slds-button_brand" onclick={handleSave}>Apply</button>
+            </div>
+        </div>
+    </div>
+</template>
